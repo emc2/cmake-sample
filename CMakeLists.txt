@@ -83,8 +83,8 @@ add_custom_target(coverage-html
 
 add_custom_target(coverage
                   COMMAND ${GCOVR} --root=${CMAKE_SOURCE_DIR}/src --object-directory=${COVERAGE_OBJ_DIR} --xml --keep --output=${CMAKE_SOURCE_DIR}/coverage/coverage.xml
-    COMMENT "Producing XML (Cobertura) coverage report."
-    )
+                  COMMENT "Producing XML (Cobertura) coverage report."
+                  )
 
 # Doxygen Configuration
 
