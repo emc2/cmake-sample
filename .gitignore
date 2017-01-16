@@ -31,3 +31,21 @@
 # Debug files
 *.dSYM/
 *.su
+
+# CMake artifacts
+Makefile
+Doxyfile
+CMakeCache.txt
+CMakeFiles
+Testing
+*.cmake
+
+# Documentation
+doc
+
+# Test reports
+unit_test.xml
+
+# Artifacts
+src/sample
+test/unit/unit_test
