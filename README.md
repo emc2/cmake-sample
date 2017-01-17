@@ -1,4 +1,4 @@
-# cmake-template
+# cmake-sample
 
 ## Overview
 
