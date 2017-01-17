@@ -145,7 +145,6 @@ endfunction()
 
 find_program(SPLINT splint)
 
-
 # Subdirectories
 
 add_subdirectory(src)

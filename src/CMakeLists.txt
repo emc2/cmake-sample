@@ -10,18 +10,18 @@ set(LIB_SRCS SAMPLE.c)
 
 ### Create a static library, against which we'll link all the tests
 
-add_library(SAMPLE_static STATIC ${LIB_SRCS})
-set_target_properties(SAMPLE_static PROPERTIES OUTPUT_NAME sample)
+add_library(${PROJECT_NAME}_static STATIC ${LIB_SRCS})
+set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
 ### Create a shared library as well
 
-add_library(SAMPLE_shared SHARED ${LIB_SRCS})
-set_target_properties(SAMPLE_shared PROPERTIES OUTPUT_NAME sample)
+add_library(${PROJECT_NAME}_shared SHARED ${LIB_SRCS})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
 ## Set up install targets
 
-install(TARGETS SAMPLE_shared LIBRARY DESTINATION lib COMPONENT libraries)
-install(TARGETS SAMPLE_static ARCHIVE DESTINATION lib COMPONENT archives)
+install(TARGETS ${PROJECT_NAME}_shared LIBRARY DESTINATION lib COMPONENT libraries)
+install(TARGETS ${PROJECT_NAME}_static ARCHIVE DESTINATION lib COMPONENT archives)
 
 ## Set up sources to feed into splint
 
@@ -33,14 +33,14 @@ set(SPLINT_EXPECTED 1)
 ##
 ## TASK: Set up your executables here
 
-set(EXEC_SRCS SAMPLE_main.c)
-add_executable(sample ${EXEC_SRCS})
+set(EXEC_SRCS ${PROJECT_NAME}_main.c)
+add_executable(${PROJECT_NAME} ${EXEC_SRCS})
 
 ## Link the executable against the static library
-target_link_libraries(sample SAMPLE_static)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}_static)
 
 ## Set up install targets for executables
-install(TARGETS sample RUNTIME DESTINATION bin COMPONENT applications)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin COMPONENT applications)
 
 
 # Additional configuration

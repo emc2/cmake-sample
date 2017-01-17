@@ -20,4 +20,4 @@ googletest_suite(unit_test ${UNIT_TEST_SRCS})
 ##
 ## TASK: Add your link libraries
 
-target_link_libraries(unit_test SAMPLE_static)
+target_link_libraries(unit_test ${PROJECT_NAME}_static)

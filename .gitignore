@@ -48,5 +48,5 @@ unit_test.xml
 coverage/
 
 # Artifacts
-src/sample
+src/SAMPLE
 test/unit/unit_test
