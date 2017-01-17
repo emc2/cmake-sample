@@ -76,6 +76,23 @@ set(COVERAGE_OBJ_DIR "${CMAKE_SOURCE_DIR}/src/CMakeFiles/${COVERAGE_TARGET}.dir/
 ## Define two targets to generate coverage information: one to
 ## generate an HTML report, and another to generate Cobertura XML.
 
+if(GCOV_COMMAND)
+
+### The gcov command can get fussy on platforms that use LLVM, so allow
+###  a substitute
+
+add_custom_target(coverage-html
+                  COMMAND ${GCOVR} --root=${CMAKE_SOURCE_DIR}/src --gcov-executable=${GCOV_COMMAND} --object-directory=${COVERAGE_OBJ_DIR} --html --html-details --html-absolute-paths --keep --output=${CMAKE_SOURCE_DIR}/coverage/coverage.html
+                  COMMENT "Producing HTML coverage report."
+                  )
+
+add_custom_target(coverage
+                  COMMAND ${GCOVR} --root=${CMAKE_SOURCE_DIR}/src --gcov-executable=${GCOV_COMMAND} --object-directory=${COVERAGE_OBJ_DIR} --xml --keep --output=${CMAKE_SOURCE_DIR}/coverage/coverage.xml
+                  COMMENT "Producing XML (Cobertura) coverage report."
+                  )
+
+else()
+
 add_custom_target(coverage-html
                   COMMAND ${GCOVR} --root=${CMAKE_SOURCE_DIR}/src --object-directory=${COVERAGE_OBJ_DIR} --html --html-details --html-absolute-paths --keep --output=${CMAKE_SOURCE_DIR}/coverage/coverage.html
                   COMMENT "Producing HTML coverage report."
@@ -85,6 +102,8 @@ add_custom_target(coverage
                   COMMAND ${GCOVR} --root=${CMAKE_SOURCE_DIR}/src --object-directory=${COVERAGE_OBJ_DIR} --xml --keep --output=${CMAKE_SOURCE_DIR}/coverage/coverage.xml
                   COMMENT "Producing XML (Cobertura) coverage report."
                   )
+
+endif()
 
 # Doxygen Configuration
 
